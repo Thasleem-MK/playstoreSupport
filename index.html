@@ -32,7 +32,7 @@
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "true",
+          credentials: true,
           body: JSON.stringify({ email, password }),
         });
 
@@ -62,7 +62,7 @@
       try {
         const res = await fetch(`https://hosta-server.vercel.app/api/users/${userId}`, {
           method: "DELETE",
-          credentials: "true",
+          credentials: true,
           headers: {
             "Authorization": `Bearer ${authToken}`, // Send token to backend
           },
