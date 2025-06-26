@@ -5,20 +5,17 @@ import apiClient from "./Axios";
 const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token,setToken]=useState("")
+  const [token, setToken] = useState("");
 
   const login = async (e) => {
     e.preventDefault(); // Prevent form reload
     try {
-
       const result = await apiClient.post(
         "users/login",
         { email, password },
         { withCredentials: true }
       );
-      // setToken(result?.token);
-      console.log(result?.data?.token);
-      
+      setToken(result?.data?.token);
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
     }
