@@ -17,7 +17,7 @@ const Form = () => {
         { withCredentials: true }
       );
       // setToken(result?.token);
-      console.log(result?.token);
+      console.log(result?.data?.token);
       
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
