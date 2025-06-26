@@ -15,6 +15,7 @@ const Form = () => {
         { email, password },
         { withCredentials: true }
       );
+      alert("Login successfully")
       setToken(result?.data?.token);
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
@@ -65,7 +66,7 @@ const Form = () => {
           Submit
         </button>
       </form>
-      <button className="delete-button" onClick={() => deleteAccount()}>
+      <button className="delete-button" onClick={() => deleteAccount()} disabled={token!==""}>
         Delete account
       </button>
     </div>
