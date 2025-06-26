@@ -9,6 +9,8 @@ const Form = () => {
   const login = async (e) => {
     e.preventDefault(); // Prevent form reload
     try {
+      console.log(email,password);
+      
       const result = await apiClient.post(
         "users/login",
         { email, password },
@@ -28,18 +30,19 @@ const Form = () => {
         <input
           type="text"
           placeholder="Your Email"
-          onClick={(e) => {
-            setEmail(e.target.value);
+          onChange={(e) => {
+            setEmail(e.target.value.toString()
+            );
           }}
         />
         <input
           type="password"
           placeholder="Password"
-          onClick={(e) => {
+          onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <button type="submit" onClick={(e) => login(e)}>
+        <button type="submit" onClick={(e) =>{ login(e)}}>
           Submit
         </button>
       </form>
