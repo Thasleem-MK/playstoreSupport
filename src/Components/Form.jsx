@@ -39,7 +39,7 @@ const Form = () => {
             setPassword(e.target.value);
           }}
         />
-        <button type="submit" onClick={() => login()}>
+        <button type="submit" onClick={(e) => login(e)}>
           Submit
         </button>
       </form>
