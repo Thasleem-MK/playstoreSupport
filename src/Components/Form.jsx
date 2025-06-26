@@ -6,6 +6,7 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
+  const [id, setId] = useState("");
 
   const login = async (e) => {
     e.preventDefault(); // Prevent form reload
@@ -15,8 +16,12 @@ const Form = () => {
         { email, password },
         { withCredentials: true }
       );
-      alert("Login successfully")
+
+      alert("Login successfully");
       setToken(result?.data?.token);
+      setId(result?.data?.data?._id);
+      setEmail("");
+      setPassword("");
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
     }
@@ -28,7 +33,7 @@ const Form = () => {
     }
 
     try {
-      const result = await apiClient.delete("users/delete", {
+      const result = await apiClient.delete(`users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,6 +54,7 @@ const Form = () => {
           onChange={(e) => {
             setEmail(e.target.value.toString());
           }}
+          value={email}
         />
         <input
           type="password"
@@ -56,6 +62,7 @@ const Form = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
+          value={password}
         />
         <button
           type="submit"
@@ -66,7 +73,7 @@ const Form = () => {
           Submit
         </button>
       </form>
-      <button className="delete-button" onClick={() => deleteAccount()} disabled={token!==""}>
+      <button className="delete-button" onClick={() => deleteAccount()}>
         Delete account
       </button>
     </div>
